@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myCustomApp
+  name: myCustomApp
+  namespace: default
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app:  myCustomAppDemo
+    template:
+      metadata:
+        labels:
+          app:  myCustomAppDemo
+      spec:
+        containers:
+          - image: public.ecr.aws/u3j4v3u4/myapp
+            imagePullPolicy:  Always
+            name: myapp
+            ports:
+              - containerPorts: 4040
+status: {}
